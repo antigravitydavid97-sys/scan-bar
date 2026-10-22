@@ -112,32 +112,13 @@ export function exportToExcel(items: ScannedItem[]): void {
 }
 
 /**
- * Genera el texto formateado de la lista de códigos pensado para pegar fácilmente
- * en aplicaciones de mensajería (WhatsApp, Telegram, correo, notas, etc.).
+ * Genera el texto formateado de la lista de códigos con el formato exacto:
+ * código - cantidad (ej: 2400007370133 - 3)
  */
 export function formatListForMessaging(items: ScannedItem[]): string {
   if (items.length === 0) return '';
 
-  const totalUnits = items.reduce((sum, item) => sum + item.quantity, 0);
-  const nowStr = formatDateTime(Date.now());
-
-  const headerLines = [
-    `📦 *INVENTARIO DE CÓDIGOS*`,
-    `Fecha: ${nowStr}`,
-    `Resumen: ${items.length} ${items.length === 1 ? 'producto' : 'productos'} · ${totalUnits} ${totalUnits === 1 ? 'unidad' : 'unidades'}`,
-    `────────────────────────`,
-  ];
-
-  const itemLines = items.map((item, index) => {
-    const titlePart = item.note ? `${item.note} (${item.code})` : `${item.code}`;
-    return [
-      `${index + 1}. *${titlePart}*`,
-      `   • Cantidad: ${item.quantity} ${item.quantity === 1 ? 'ud.' : 'uds.'} | Formato: ${item.format}`,
-      `   • Escaneado: ${formatDateTime(item.updatedAt)}`,
-    ].join('\n');
-  });
-
-  return [...headerLines, ...itemLines].join('\n');
+  return items.map((item) => `${item.code} - ${item.quantity}`).join('\n');
 }
 
 /**
