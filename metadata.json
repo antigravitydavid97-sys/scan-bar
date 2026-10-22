@@ -1,0 +1,6 @@
+{
+  "name": "Lector de Códigos",
+  "description": "Aplicación móvil para escanear códigos de barras y QR en tiempo real, gestionar inventario con cantidades y notas, y exportar a CSV o Excel.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

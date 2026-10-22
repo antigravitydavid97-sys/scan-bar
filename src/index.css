@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #090D16;
+    color: #F8FAFC;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Override html5-qrcode default inline video styling so it fills the scanner container cleanly */
+#barcode-reader-viewport video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 1rem;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-90px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(90px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-90px);
+    opacity: 0.4;
+  }
+}
+
+.animate-scanline {
+  animation: scanline 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
